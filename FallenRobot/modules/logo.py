@@ -248,12 +248,14 @@ LOGO_LINKS            = ["https://telegra.ph/file/d1838efdafce9fe611d0c.jpg",
                          "https://telegra.ph/file/9849b3940f063b065f4e3.jpg"
                          ]
 
-@register(pattern="^/logo ?(.*)")
-async def lego(event):
- quew = event.pattern_match.group(1)
- if event.sender_id != OWNER_ID and not quew:
-  await event.reply('`ɢɪᴠᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ ᴄʀᴇᴀᴛᴇ ʟᴏɢᴏ ʙᴀʙʏ​ !`\n`Example /logo <ANONYMOUS>`')
-  return
+@Client.on_message(
+    filters.command("logo") &
+    f_onw_fliter
+)
+async def telegraph(client, message):
+  replied = message.reply_to_message
+  if not replied:
+    
  pesan = await event.reply('**ᴄʀᴇᴀᴛɪɴɢ ʏᴏᴜʀ ʀᴇǫᴜᴇsᴛᴇᴅ ʟᴏɢᴏ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ ᴀ sᴇᴄ​...**')
  try:
     text = event.pattern_match.group(1)
